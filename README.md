@@ -64,6 +64,7 @@ docs/proposal.md | plan-4-weeks.md | architecture.md
 
 - [Proposal](docs/proposal.md)
 - [Kế hoạch 4 tuần](docs/plan-4-weeks.md)
+- [Phân công chi tiết theo thành viên](docs/team-work-plan.md)
 - [Kiến trúc và game scene](docs/architecture.md)
 - [Luật game](docs/game-rules.md)
 - [Hướng dẫn đóng góp](CONTRIBUTING.md)
