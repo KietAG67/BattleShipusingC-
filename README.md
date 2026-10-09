@@ -16,9 +16,10 @@ Game Battleship 10x10 cho Windows, xây dựng bằng C#/.NET 8 và WPF. Ngườ
 - SQL Server Express/Developer hoặc SQL Server LocalDB.
 
 ### Nhà phát triển
-- Windows 10/11, Visual Studio 2022 17.8+ với workload **.NET desktop development** và Windows SDK.
+- Windows 10/11 và VS Code.
 - .NET 8 SDK, Git, SQL Server Express/Developer hoặc LocalDB.
-- SQL Server Management Studio (khuyến nghị).
+- VS Code extensions: **C# Dev Kit**, **C#**, và **SQL Server (mssql)**.
+- SQL Server Management Studio (khuyến nghị, chỉ dùng để quản lý database).
 
 Kiểm tra: `dotnet --version`, `git --version`.
 
@@ -38,7 +39,7 @@ Chỉnh connection string trong `src/BattleShip.Infrastructure/appsettings.json`
 
 ## Kiến trúc
 
-`Domain` chứa luật game; `Application` chứa use cases/bot; `Infrastructure` chứa SQL Server; `Wpf` chứa giao diện. Dependency đi vào abstraction, không để Domain phụ thuộc UI/database.
+`Domain` chứa luật game; `Application` chứa use cases/bot; `Infrastructure` chứa SQL Server; `Wpf` chứa giao diện. Dependency đi vào abstraction, không để Domain phụ thuộc UI/database. Dự án được code và chạy bằng VS Code + .NET CLI; không yêu cầu Visual Studio 2022.
 
 Bot: Easy=random; Medium=Hunt-Target; Hard=constraint/backtracking + probability heatmap + Hunt-Target, dùng BFS gom vùng trúng và tìm ô biên. Minimax không phù hợp vì bot không biết toàn bộ bàn cờ.
 
