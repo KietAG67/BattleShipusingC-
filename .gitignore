@@ -13,6 +13,8 @@ x86/
 [Bb]in/
 [Oo]bj/
 artifacts/
+.dotnet-home/
+.nuget/
 
 # Test results and coverage
 [Tt]est[Rr]esult*/
