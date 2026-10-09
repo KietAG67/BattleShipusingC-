@@ -60,4 +60,13 @@ docs/proposal.md | plan-4-weeks.md | architecture.md
 | Nam | WPF, màn hình chính, màn hình đặt tàu |
 | Phát | Hiệu ứng bắn, thông báo, bảng điểm, âm thanh |
 
-Đọc thêm: [proposal](docs/proposal.md), [plan 4 tuần](docs/plan-4-weeks.md), [architecture](docs/architecture.md).
+Đọc thêm:
+
+- [Proposal](docs/proposal.md)
+- [Kế hoạch 4 tuần](docs/plan-4-weeks.md)
+- [Kiến trúc và game scene](docs/architecture.md)
+- [Luật game](docs/game-rules.md)
+- [Hướng dẫn đóng góp](CONTRIBUTING.md)
+- [Coding standards](docs/coding-standards.md)
+- [Quyết định kỹ thuật](docs/decisions.md)
+- [Database](docs/database.md)
