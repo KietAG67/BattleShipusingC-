@@ -1,0 +1,93 @@
+# Visual Studio user-specific files
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+.vs/
+
+# Build output
+[Dd]ebug/
+[Rr]elease/
+x64/
+x86/
+[Bb]in/
+[Oo]bj/
+artifacts/
+
+# Test results and coverage
+[Tt]est[Rr]esult*/
+TestResults/
+*.trx
+*.coverage
+*.coveragexml
+coverage/
+
+# NuGet
+packages/
+*.nupkg
+*.snupkg
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+# Logs and temporary files
+*.log
+*.tmp
+*.temp
+*.cache
+*.pidb
+*.pdb
+*.ilk
+*.obj
+*.pch
+*.pgc
+*.pgd
+*.rsp
+*.sbr
+*.tlog
+
+# ReSharper / Rider / Code analysis
+_ReSharper*/
+*.DotSettings.user
+.idea/
+.ionide/
+.sonarlint/
+
+# Publish and deployment output
+publish/
+AppPackages/
+*.Publish.xml
+*.pubxml
+*.publishsettings
+
+# Local configuration and secrets
+.env
+.env.*
+!.env.example
+appsettings.Local.json
+appsettings.Development.json
+secrets.json
+
+# Local SQL Server database files
+*.mdf
+*.ldf
+*.ndf
+App_Data/
+
+# Native/Visual C++ caches occasionally created by VS
+ipch/
+*.aps
+*.ncb
+*.opensdf
+*.sdf
+*.cachefile
+
+# Windows and macOS files
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+.DS_Store
+
+# NCrunch
+_NCrunch_*/
