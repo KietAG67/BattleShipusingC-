@@ -37,4 +37,4 @@ public sealed class Board
     public bool WasShot(Cell cell)=>_shots.Contains(cell);
     public CellState GetState(Cell cell,bool revealShips=false) { var ship=_ships.FirstOrDefault(s=>s.Contains(cell)); if(ship is not null&&ship.Hits.Contains(cell))return ship.IsSunk?CellState.Sunk:CellState.Hit; if(_shots.Contains(cell))return CellState.Miss; return revealShips&&ship is not null?CellState.Ship:CellState.Unknown; }
 }
-public static class Fleet { public static readonly IReadOnlyList<(string Name,int Length)> Default=[("Carrier",5),("Battleship",4),("Cruiser",3),("Submarine",3),("Destroyer",2)]; }
+public static class Fleet { public static readonly IReadOnlyList<(string Name,int Length)> Default=[("Carrier",5),("Battleship",4),("Cruiser",3),("Destroyer",2)]; }

@@ -1,0 +1,81 @@
+<UserControl x:Class="BattleShip.Wpf.Views.LoginView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:helpers="clr-namespace:BattleShip.Wpf.Helpers">
+    <Grid Background="#0E2D49">
+        <Viewbox Stretch="Uniform">
+            <!-- Toạ độ bên dưới tính theo pixel của ảnh Login.jpg (1160 x 708) -->
+            <Canvas Width="1160" Height="708">
+                <Image Source="pack://application:,,,/Assets/Backgrounds/Login.jpg" Width="1160" Height="708" Stretch="Fill"/>
+
+                <!-- Ô Username (che chữ mẫu có sẵn trong ảnh bằng màu nền ô) -->
+                <TextBox x:Name="UsernameBox" Canvas.Left="420" Canvas.Top="261" Width="384" Height="33"
+                         Background="#D1D8E0" BorderThickness="0" FontSize="18" Foreground="#1B2B3C"
+                         VerticalContentAlignment="Center" Padding="6,0,0,0" TabIndex="0"
+                         Text="{Binding Username, UpdateSourceTrigger=PropertyChanged}">
+                    <TextBox.InputBindings>
+                        <KeyBinding Key="Return" Command="{Binding LoginCommand}"/>
+                    </TextBox.InputBindings>
+                </TextBox>
+                <TextBlock Canvas.Left="426" Canvas.Top="266" Text="Username / Email" FontSize="18"
+                           Foreground="#7A8795" IsHitTestVisible="False">
+                    <TextBlock.Style>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="Visibility" Value="Collapsed"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Username}" Value="">
+                                    <Setter Property="Visibility" Value="Visible"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </TextBlock.Style>
+                </TextBlock>
+
+                <!-- Ô Password -->
+                <PasswordBox x:Name="PasswordBoxControl" Canvas.Left="420" Canvas.Top="343" Width="384" Height="33"
+                             Background="#D1D8E0" BorderThickness="0" FontSize="18" Foreground="#1B2B3C"
+                             VerticalContentAlignment="Center" Padding="6,0,0,0" TabIndex="1" PasswordChar="●"
+                             helpers:PasswordBoxAssist.Attach="True"
+                             helpers:PasswordBoxAssist.BoundPassword="{Binding Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                    <PasswordBox.InputBindings>
+                        <KeyBinding Key="Return" Command="{Binding LoginCommand}"/>
+                    </PasswordBox.InputBindings>
+                </PasswordBox>
+                <TextBlock Canvas.Left="426" Canvas.Top="348" Text="Password" FontSize="18"
+                           Foreground="#7A8795" IsHitTestVisible="False">
+                    <TextBlock.Style>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="Visibility" Value="Collapsed"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding HasPassword}" Value="False">
+                                    <Setter Property="Visibility" Value="Visible"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </TextBlock.Style>
+                </TextBlock>
+
+                <!-- Thông báo lỗi / thành công -->
+                <TextBlock Canvas.Left="385" Canvas.Top="491" Width="423" Height="24" TextAlignment="Center"
+                           FontSize="14" FontWeight="SemiBold" Text="{Binding Message}" IsHitTestVisible="False">
+                    <TextBlock.Style>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="Foreground" Value="#1E8449"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding IsError}" Value="True">
+                                    <Setter Property="Foreground" Value="#C0392B"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </TextBlock.Style>
+                </TextBlock>
+
+                <!-- Nút trong suốt đặt đè lên nút đã vẽ trong ảnh -->
+                <Button Style="{StaticResource OverlayButton}" Canvas.Left="385" Canvas.Top="442" Width="423" Height="46"
+                        Command="{Binding LoginCommand}"/>
+                <Button Style="{StaticResource OverlayButton}" Foreground="#1F4E8C" Canvas.Left="636" Canvas.Top="514"
+                        Width="96" Height="24" Command="{Binding RegisterCommand}"/>
+            </Canvas>
+        </Viewbox>
+    </Grid>
+</UserControl>
