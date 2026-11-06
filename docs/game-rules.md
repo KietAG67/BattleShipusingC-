@@ -3,7 +3,7 @@
 ## Bàn cờ và hạm đội
 
 - Bàn cờ có 10 hàng và 10 cột.
-- Hạm đội gồm: Carrier 5 ô, Battleship 4 ô, Cruiser 3 ô, Submarine 3 ô, Destroyer 2 ô.
+- Hạm đội gồm: Carrier 5 ô, Battleship 4 ô, Cruiser 3 ô, Destroyer 2 ô (4 tàu).
 - Tàu chỉ được đặt ngang hoặc dọc.
 - Tàu được chạm cạnh hoặc chạm góc tàu khác.
 - Tàu không được chồng lên nhau và không được vượt khỏi bàn cờ.
