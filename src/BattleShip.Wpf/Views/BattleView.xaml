@@ -1,0 +1,57 @@
+<UserControl x:Class="BattleShip.Wpf.Views.BattleView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:views="clr-namespace:BattleShip.Wpf.Views"
+             xmlns:fx="clr-namespace:BattleShip.Wpf.Effects"
+             Focusable="True" PreviewKeyDown="OnPreviewKeyDown">
+    <Grid Background="#133D5F">
+        <Viewbox Stretch="Uniform">
+            <!-- Toạ độ tính theo pixel của ảnh Battle.jpg (1101 x 768) -->
+            <Canvas Width="1101" Height="768">
+                <Image Source="pack://application:,,,/Assets/Backgrounds/Battle.jpg" Width="1101" Height="768" Stretch="Fill"/>
+
+                <!-- Viên "YOUR TURN 00:25": che chữ mẫu rồi hiện lượt + đồng hồ thật -->
+                <Border Canvas.Left="444" Canvas.Top="171" Width="202" Height="28" CornerRadius="14" Background="#E1E8F0">
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <TextBlock Text="{Binding TurnLabel}" FontSize="17" Foreground="#1B2B3C"/>
+                        <TextBlock Text="{Binding TimerText}" FontSize="17" FontWeight="Bold" Foreground="#1B2B3C" Margin="10,0,0,0"/>
+                    </StackPanel>
+                </Border>
+
+                <!-- Your Fleet (bên trái) và Enemy Waters (bên phải) đặt đúng lên lưới trong ảnh -->
+                <views:BoardGridView Canvas.Left="189" Canvas.Top="274" Width="324.5" Height="323"
+                                     DataContext="{Binding PlayerBoard}"/>
+                <views:BoardGridView Canvas.Left="590" Canvas.Top="274" Width="324.5" Height="323"
+                                     DataContext="{Binding EnemyBoard}" IsInteractive="True"/>
+
+                <!-- Che chú thích mẫu trong ảnh; thay bằng thông báo trạng thái và chú thích đúng với hiệu ứng thật -->
+                <Border Canvas.Left="185" Canvas.Top="606" Width="480" Height="50" Background="#E0E6EC">
+                    <TextBlock Text="{Binding StatusMessage}" TextWrapping="Wrap" FontSize="17" FontWeight="SemiBold"
+                               Foreground="#1B2B3C" VerticalAlignment="Center" Margin="5,0"/>
+                </Border>
+                <Border Canvas.Left="843" Canvas.Top="606" Width="80" Height="58" Background="#E0E6EC"/>
+
+                <StackPanel Canvas.Left="190" Canvas.Top="662" Orientation="Horizontal" IsHitTestVisible="False">
+                    <fx:SpriteView Sprite="fire" Width="22" Height="26"/>
+                    <TextBlock Text="hit" FontSize="15" Foreground="#3A4A5A" VerticalAlignment="Center" Margin="6,0,26,0"/>
+                    <fx:SpriteView Sprite="ripple" Width="26" Height="22"/>
+                    <TextBlock Text="miss" FontSize="15" Foreground="#3A4A5A" VerticalAlignment="Center" Margin="6,0,26,0"/>
+                    <Image Source="pack://application:,,,/Assets/Ships/destroyer_h.png" Width="50" Height="20"
+                           RenderOptions.BitmapScalingMode="HighQuality"/>
+                    <TextBlock Text="sunk ship" FontSize="15" Foreground="#3A4A5A" VerticalAlignment="Center" Margin="6,0,0,0"/>
+                </StackPanel>
+
+                <!-- Nút Fire: mờ đi khi chưa thể bắn -->
+                <Border Canvas.Left="675" Canvas.Top="618" Width="154" Height="39" CornerRadius="19" Background="#A6E0E6EC"
+                        IsHitTestVisible="False" Panel.ZIndex="1"
+                        Visibility="{Binding IsFireDimmed, Converter={StaticResource BoolToVis}}"/>
+                <Button Style="{StaticResource OverlayButton}" Foreground="#1F3556" Canvas.Left="675" Canvas.Top="618"
+                        Width="154" Height="39" Command="{Binding FireCommand}"/>
+
+                <!-- Lớp hiệu ứng đạn bay (trên cùng, không bắt chuột) -->
+                <Canvas x:Name="FxCanvas" Canvas.Left="0" Canvas.Top="0" Width="1101" Height="768"
+                        IsHitTestVisible="False" Panel.ZIndex="5"/>
+            </Canvas>
+        </Viewbox>
+    </Grid>
+</UserControl>
