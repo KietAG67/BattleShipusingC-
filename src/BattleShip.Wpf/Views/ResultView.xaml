@@ -1,0 +1,44 @@
+<UserControl x:Class="BattleShip.Wpf.Views.ResultView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Grid Background="#08192A">
+
+        <!-- THẮNG: ảnh Victory.jpg (1577 x 1079) -->
+        <Viewbox Stretch="Uniform" Visibility="{Binding IsWin, Converter={StaticResource BoolToVis}}">
+            <Canvas Width="1577" Height="1079">
+                <Image Source="pack://application:,,,/Assets/Backgrounds/Victory.jpg" Width="1577" Height="1079" Stretch="Fill"/>
+
+                <TextBlock Canvas.Left="0" Canvas.Top="290" Width="1577" TextAlignment="Center" Text="{Binding ShotsText}"
+                           FontSize="44" FontWeight="SemiBold" Foreground="#F6D77A" IsHitTestVisible="False">
+                    <TextBlock.Effect>
+                        <DropShadowEffect Color="Black" BlurRadius="10" ShadowDepth="2" Opacity="0.8"/>
+                    </TextBlock.Effect>
+                </TextBlock>
+
+                <Button Style="{StaticResource OverlayButton}" Foreground="#F6D77A" Canvas.Left="371" Canvas.Top="958"
+                        Width="399" Height="106" Command="{Binding PlayAgainCommand}"/>
+                <Button Style="{StaticResource OverlayButton}" Foreground="#F6D77A" Canvas.Left="829" Canvas.Top="958"
+                        Width="399" Height="106" Command="{Binding MainMenuCommand}"/>
+            </Canvas>
+        </Viewbox>
+
+        <!-- THUA: ảnh Defeat.jpg (947 x 862) -->
+        <Viewbox Stretch="Uniform" Visibility="{Binding IsDefeat, Converter={StaticResource BoolToVis}}">
+            <Canvas Width="947" Height="862">
+                <Image Source="pack://application:,,,/Assets/Backgrounds/Defeat.jpg" Width="947" Height="862" Stretch="Fill"/>
+
+                <TextBlock Canvas.Left="0" Canvas.Top="262" Width="947" TextAlignment="Center" Text="{Binding ShotsText}"
+                           FontSize="34" FontWeight="SemiBold" Foreground="#F4A582" IsHitTestVisible="False">
+                    <TextBlock.Effect>
+                        <DropShadowEffect Color="Black" BlurRadius="8" ShadowDepth="2" Opacity="0.8"/>
+                    </TextBlock.Effect>
+                </TextBlock>
+
+                <Button Style="{StaticResource OverlayButton}" Foreground="#F4A582" Canvas.Left="157" Canvas.Top="768"
+                        Width="305" Height="80" Command="{Binding PlayAgainCommand}"/>
+                <Button Style="{StaticResource OverlayButton}" Foreground="#F4A582" Canvas.Left="507" Canvas.Top="768"
+                        Width="305" Height="80" Command="{Binding MainMenuCommand}"/>
+            </Canvas>
+        </Viewbox>
+    </Grid>
+</UserControl>
