@@ -1,3 +1,4 @@
+using System;
 using System.Windows.Input;
 
 namespace BattleShip.Wpf.Commands
@@ -23,7 +24,7 @@ namespace BattleShip.Wpf.Commands
             remove => CommandManager.RequerySuggested -= value;
         }
 
-        /// <summary>Báo cho WPF kiểm tra lại CanExecute của mọi nút.</summary>
+    
         public static void Refresh() => CommandManager.InvalidateRequerySuggested();
     }
 }

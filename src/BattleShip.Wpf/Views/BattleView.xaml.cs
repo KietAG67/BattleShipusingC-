@@ -1,7 +1,6 @@
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using BattleShip.Domain;
 using BattleShip.Wpf.Effects;
 using BattleShip.Wpf.ViewModels;
 
@@ -42,8 +41,8 @@ namespace BattleShip.Wpf.Views
         {
             var boardX = fromPlayer ? EnemyBoardX : PlayerBoardX;
             var target = new Point(
-                boardX + ((column + 0.5) * BoardWidth / Board.Size),
-                BoardY + ((row + 0.5) * BoardHeight / Board.Size));
+                boardX + ((column + 0.5) * BoardWidth / 10),
+                BoardY + ((row + 0.5) * BoardHeight / 10));
             var start = fromPlayer ? new Point(120, 800) : new Point(1000, -40);
 
             return MissileFlight.PlayAsync(FxCanvas, start, target, FlightSeconds);

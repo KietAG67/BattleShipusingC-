@@ -5,12 +5,7 @@ using System.Windows.Media;
 
 namespace BattleShip.Wpf.Effects
 {
-    /// <summary>
-    /// Image tự phát animation từng frame (sprite sheet).
-    /// - Sprite: tên hiệu ứng ("fire", "explosion", "splash", "missile", "ripple").
-    /// - NextSprite: hiệu ứng chạy tiếp sau khi Sprite (không loop) kết thúc, ví dụ explosion -> fire.
-    /// Chỉ chạy khi control đang hiển thị, nên ô ẩn (Collapsed) sẽ bắt đầu animation đúng lúc được bật lên.
-    /// </summary>
+    
     public sealed class SpriteView : Image
     {
         public static readonly DependencyProperty SpriteProperty =
@@ -81,7 +76,7 @@ namespace BattleShip.Wpf.Effects
         {
             _clock.Restart();
 
-            // Sprite chỉ có 1 frame (ví dụ "ripple") thì không cần chạy animation.
+            
             if (_sheet == null || _sheet.Frames.Length <= 1 || _running)
             {
                 return;

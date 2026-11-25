@@ -3,12 +3,7 @@ using System.Windows.Controls;
 
 namespace BattleShip.Wpf.Helpers
 {
-    /// <summary>
-    /// PasswordBox không cho Binding trực tiếp. Attached property này đồng bộ PasswordBox.Password với ViewModel
-    /// để ViewModel không cần biết gì về control.
-    /// Dùng: helpers:PasswordBoxAssist.Attach="True"
-    ///       helpers:PasswordBoxAssist.BoundPassword="{Binding Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-    /// </summary>
+    
     public static class PasswordBoxAssist
     {
         public static readonly DependencyProperty AttachProperty =

@@ -1,6 +1,8 @@
+using System;
+
 namespace BattleShip.Wpf.ViewModels
 {
-    /// <summary>Giữ ViewModel đang hiển thị. MainWindow chỉ việc hiển thị CurrentViewModel.</summary>
+    
     public class NavigationStore
     {
         private ViewModelBase? _currentViewModel;

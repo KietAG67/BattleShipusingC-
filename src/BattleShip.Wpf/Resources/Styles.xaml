@@ -3,11 +3,7 @@
 
     <BooleanToVisibilityConverter x:Key="BoolToVis"/>
 
-    <!--
-        MỘT style nút duy nhất cho cả game.
-        - Mặc định trong suốt: đặt đè lên đúng vị trí nút đã vẽ sẵn trong ảnh nền, chỉ thêm hiệu ứng sáng (màu = Foreground) khi rê chuột/bấm.
-        - Muốn vẽ một nút thật (ví dụ bảng chọn độ khó) thì chỉ cần gán Background/Foreground/Content.
-    -->
+    
     <Style x:Key="OverlayButton" TargetType="Button">
         <Setter Property="Background" Value="Transparent"/>
         <Setter Property="BorderBrush" Value="Transparent"/>

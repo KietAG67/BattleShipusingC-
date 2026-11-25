@@ -20,12 +20,7 @@ namespace BattleShip.Wpf.Effects
         public bool Loop { get; }
     }
 
-    /// <summary>
-    /// Thông số hiệu ứng lấy từ Assets/images/fx/note.txt:
-    /// fire 6 frame 12 FPS lặp; explosion 9 frame 15 FPS chạy 1 lần;
-    /// splash 4 frame 10 FPS chạy 1 lần; missile 4 frame 15 FPS.
-    /// Mỗi file trong Assets/Fx là một dải ngang gồm các frame bằng nhau (đã tách nền trong suốt).
-    /// </summary>
+    
     public static class SpriteSheets
     {
         private static readonly Dictionary<string, SpriteSheet> Cache = new();
@@ -43,7 +38,7 @@ namespace BattleShip.Wpf.Effects
                 "explosion" => Load("explosion.png", 9, 15, loop: false),
                 "splash" => Load("splash.png", 4, 10, loop: false),
                 "missile" => Load("missile.png", 4, 15, loop: true),
-                // Vệt nước tĩnh để đánh dấu ô bắn trượt sau khi splash chạy xong (frame đầu của splash).
+                
                 "ripple" => Load("splash.png", 4, 1, loop: true, firstFrameOnly: true),
                 _ => null,
             };

@@ -2,11 +2,7 @@ using BattleShip.Domain;
 
 namespace BattleShip.Wpf.Services
 {
-    /// <summary>
-    /// TẠM THỜI: rải hạm đội cho bot một cách ngẫu nhiên để màn hình Battle chạy được.
-    /// Luật hợp lệ (vượt biên/chồng tàu) vẫn do Board.CanPlaceShip quyết định, ở đây chỉ chọn vị trí thử.
-    /// Khi Kiệt/Sỹ bàn giao hàm đặt tàu cho bot trong Application thì thay chỗ gọi trong FleetPlacementViewModel.
-    /// </summary>
+    
     public static class RandomFleetPlacer
     {
         private const int MaxAttemptsPerShip = 2000;

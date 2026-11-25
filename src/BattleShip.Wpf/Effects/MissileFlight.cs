@@ -5,10 +5,7 @@ using System.Windows.Media.Animation;
 
 namespace BattleShip.Wpf.Effects
 {
-    /// <summary>
-    /// Đạn bay từ ngoài bàn cờ tới ô được chọn (Assets/Fx/missile.png, 4 frame, 15 FPS).
-    /// Task hoàn thành khi đạn chạm ô mục tiêu và đã bị gỡ khỏi canvas.
-    /// </summary>
+    
     public static class MissileFlight
     {
         private const double SpriteWidth = 96;
@@ -30,13 +27,13 @@ namespace BattleShip.Wpf.Effects
             var uy = dy / length;
             var angle = Math.Atan2(dy, dx) * 180.0 / Math.PI;
 
-            // Tâm sprite khi mũi đạn vừa chạm mục tiêu (mũi đạn nằm bên phải khung hình).
+            
             var endX = to.X - (ux * SpriteWidth * 0.4);
             var endY = to.Y - (uy * SpriteWidth * 0.4);
 
             var move = new TranslateTransform();
             var transforms = new TransformGroup();
-            // Bay sang trái thì lật dọc để đạn không bị ngược.
+            
             transforms.Children.Add(new ScaleTransform(1, dx < 0 ? -1 : 1));
             transforms.Children.Add(new RotateTransform(angle));
             transforms.Children.Add(move);

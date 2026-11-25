@@ -1,6 +1,5 @@
 using System.Windows.Controls;
 using System.Windows.Input;
-using BattleShip.Domain;
 using BattleShip.Wpf.ViewModels;
 
 namespace BattleShip.Wpf.Views
@@ -26,9 +25,9 @@ namespace BattleShip.Wpf.Views
                 return null;
             }
 
-            var column = (int)(position.X / width * Board.Size);
-            var row = (int)(position.Y / height * Board.Size);
-            return row is >= 0 and < Board.Size && column is >= 0 and < Board.Size ? (row, column) : null;
+            var column = (int)(position.X / width * 10);
+            var row = (int)(position.Y / height * 10);
+            return row is >= 0 and < 10 && column is >= 0 and < 10 ? (row, column) : null;
         }
 
         private void OnGridMouseMove(object sender, MouseEventArgs e)

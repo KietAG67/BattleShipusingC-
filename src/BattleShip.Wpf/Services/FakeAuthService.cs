@@ -3,11 +3,7 @@ using System.Text;
 
 namespace BattleShip.Wpf.Services
 {
-    /// <summary>
-    /// DỮ LIỆU GIẢ cho giai đoạn đầu: tài khoản chỉ nằm trong RAM, tắt app là mất.
-    /// Không có tài khoản mẫu nào được viết cứng trong code: hãy bấm "Sign up now" để tạo tài khoản rồi đăng nhập.
-    /// Sỹ sẽ thay bằng bản dùng SQL Server (UserRepository) qua AppServices.Auth.
-    /// </summary>
+    
     public sealed class FakeAuthService : IAuthService
     {
         private const int MinUsernameLength = 3;
@@ -15,6 +11,11 @@ namespace BattleShip.Wpf.Services
         private const int MinPasswordLength = 6;
 
         private readonly Dictionary<string, string> _users = new(StringComparer.OrdinalIgnoreCase);
+
+        public FakeAuthService()
+        {
+            _users["demo"] = Hash("demo123");
+        }
 
         public AuthResult Login(string username, string password)
         {
