@@ -14,14 +14,14 @@ namespace BattleShip.Application;
 /// </list>
 /// Bot chỉ dùng thông tin công khai: trạng thái ô đã bắn và độ dài các tàu đã chìm.
 /// </summary>
-public sealed class ProbabilityBot : IBotStrategy
+public sealed class HardBot : IBotStrategy
 {
     /// <summary>Điểm cộng cho mỗi ô trúng mà một vị trí đặt tàu đi qua.</summary>
     private const int HitWeight = 100;
 
     private readonly Random _random;
 
-    public ProbabilityBot(Random? random = null)
+    public HardBot(Random? random = null)
     {
         _random = random ?? new Random();
     }

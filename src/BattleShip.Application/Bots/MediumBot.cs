@@ -8,15 +8,15 @@ namespace BattleShip.Application;
 /// ưu tiên kéo dài hàng ô trúng thẳng hàng. Trạng thái được suy ra từ bàn cờ mỗi lượt,
 /// nên một tàu chìm không làm bot quên các ô trúng của tàu khác.
 /// </summary>
-public sealed class HuntTargetBot : IBotStrategy
+public sealed class MediumBot : IBotStrategy
 {
     private readonly Random _random;
-    private readonly RandomBot _hunt;
+    private readonly EasyBot _hunt;
 
-    public HuntTargetBot(Random? random = null)
+    public MediumBot(Random? random = null)
     {
         _random = random ?? new Random();
-        _hunt = new RandomBot(_random);
+        _hunt = new EasyBot(_random);
     }
 
     public Cell ChooseTarget(Board enemyBoard)

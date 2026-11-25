@@ -7,9 +7,9 @@ namespace BattleShip.Wpf.Services
     {
         public static IBotStrategy Create(string difficulty) => difficulty switch
         {
-            "Easy" => new RandomBot(),
-            "Hard" => new ProbabilityBot(),
-            _ => new HuntTargetBot(),
+            "Easy" => new EasyBot(),
+            "Hard" => new HardBot(),
+            _ => new MediumBot(),
         };
     }
 }

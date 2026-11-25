@@ -3,11 +3,11 @@ using BattleShip.Domain;
 namespace BattleShip.Application;
 
 /// <summary>Bot Easy: bắn ngẫu nhiên vào các ô chưa bắn.</summary>
-public sealed class RandomBot : IBotStrategy
+public sealed class EasyBot : IBotStrategy
 {
     private readonly Random _random;
 
-    public RandomBot(Random? random = null)
+    public EasyBot(Random? random = null)
     {
         _random = random ?? new Random();
     }

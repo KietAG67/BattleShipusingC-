@@ -16,9 +16,9 @@ public class BotTests
 
     private static readonly Dictionary<string, Func<Random, IBotStrategy>> Bots = new()
     {
-        ["Easy"] = random => new RandomBot(random),
-        ["Medium"] = random => new HuntTargetBot(random),
-        ["Hard"] = random => new ProbabilityBot(random),
+        ["Easy"] = random => new EasyBot(random),
+        ["Medium"] = random => new MediumBot(random),
+        ["Hard"] = random => new HardBot(random),
     };
 
     public static TheoryData<string> BotNames => new() { "Easy", "Medium", "Hard" };
@@ -94,7 +94,7 @@ public class BotTests
             var board = BoardWithShip(new Cell(5, 4), 3, Orientation.Horizontal);
             board.Shoot(new Cell(5, 5));
 
-            var target = new HuntTargetBot(new Random(seed)).ChooseTarget(board);
+            var target = new MediumBot(new Random(seed)).ChooseTarget(board);
 
             Assert.Contains(target, new Cell(5, 5).Neighbors4());
         }
@@ -109,7 +109,7 @@ public class BotTests
             board.Shoot(new Cell(5, 5));
             board.Shoot(new Cell(5, 6));
 
-            var target = new HuntTargetBot(new Random(seed)).ChooseTarget(board);
+            var target = new MediumBot(new Random(seed)).ChooseTarget(board);
 
             Assert.Contains(target, new[] { new Cell(5, 4), new Cell(5, 7) });
         }
@@ -128,7 +128,7 @@ public class BotTests
             board.Shoot(new Cell(0, 0));
             Assert.Equal(ShotResult.Sunk, board.Shoot(new Cell(0, 1))); // chìm tàu nhỏ
 
-            var target = new HuntTargetBot(new Random(seed)).ChooseTarget(board);
+            var target = new MediumBot(new Random(seed)).ChooseTarget(board);
 
             Assert.Contains(target, new Cell(5, 6).Neighbors4());
         }
@@ -144,7 +144,7 @@ public class BotTests
             var board = BoardWithShip(new Cell(5, 4), 3, Orientation.Horizontal);
             board.Shoot(new Cell(5, 5));
 
-            var target = new ProbabilityBot(new Random(seed)).ChooseTarget(board);
+            var target = new HardBot(new Random(seed)).ChooseTarget(board);
 
             Assert.Contains(target, new Cell(5, 5).Neighbors4());
         }
@@ -159,7 +159,7 @@ public class BotTests
             board.Shoot(new Cell(5, 5));
             board.Shoot(new Cell(5, 6));
 
-            var target = new ProbabilityBot(new Random(seed)).ChooseTarget(board);
+            var target = new HardBot(new Random(seed)).ChooseTarget(board);
 
             Assert.Contains(target, new[] { new Cell(5, 4), new Cell(5, 7) });
         }
@@ -175,7 +175,7 @@ public class BotTests
         board.Shoot(new Cell(6, 5));
         board.Shoot(new Cell(5, 4));
 
-        var target = new ProbabilityBot(new Random(1)).ChooseTarget(board);
+        var target = new HardBot(new Random(1)).ChooseTarget(board);
 
         Assert.Equal(new Cell(5, 6), target);
     }
@@ -190,7 +190,7 @@ public class BotTests
         board.Shoot(new Cell(0, 1)); // chìm
         board.Shoot(new Cell(5, 6)); // trúng tàu lớn
 
-        var target = new ProbabilityBot(new Random(1)).ChooseTarget(board);
+        var target = new HardBot(new Random(1)).ChooseTarget(board);
 
         Assert.Contains(target, new Cell(5, 6).Neighbors4());
     }
