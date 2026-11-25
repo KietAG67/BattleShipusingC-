@@ -2,6 +2,7 @@ using System.Diagnostics;
 using System.Windows.Input;
 using System.Windows.Threading;
 using BattleShip.Application;
+using BattleShip.Infrastructure;
 using BattleShip.Domain;
 using BattleShip.Wpf.Commands;
 using BattleShip.Wpf.Services;
@@ -27,6 +28,7 @@ namespace BattleShip.Wpf.ViewModels
 
         private CellViewModel? _selectedCell;
         private int _playerShots;
+        private Task<long?>? _gameIdTask;
         private int _remaining;
         private bool _busy;
         private bool _closed;
@@ -57,6 +59,8 @@ namespace BattleShip.Wpf.ViewModels
 
             _timer = new DispatcherTimer { Interval = TimeSpan.FromSeconds(1) };
             _timer.Tick += OnTick;
+
+            _gameIdTask = StartRecordingAsync();
 
             BeginPlayerTurn("Your turn: pick a cell on Enemy Waters, then press Fire.");
         }
@@ -348,6 +352,7 @@ namespace BattleShip.Wpf.ViewModels
             }
 
             Close();
+            _ = SaveGameAsync(playerWon);
             _navigationStore.CurrentViewModel = new ResultViewModel(_navigationStore, playerWon, _playerShots, Difficulty);
         }
 
@@ -360,6 +365,7 @@ namespace BattleShip.Wpf.ViewModels
             }
 
             Close();
+            _ = SaveGameAsync(playerWon: false);
             _navigationStore.CurrentViewModel = new ResultViewModel(_navigationStore, false, _playerShots, Difficulty);
         }
 
@@ -368,6 +374,56 @@ namespace BattleShip.Wpf.ViewModels
             _closed = true;
             _timer.Stop();
             _timer.Tick -= OnTick;
+        }
+
+
+        // ---------- lưu trận vào database ----------
+
+        /// <summary>Tạo bản ghi ván đấu. Không có người đăng nhập hoặc DB lỗi thì bỏ qua, game vẫn chơi được.</summary>
+        private async Task<long?> StartRecordingAsync()
+        {
+            if (AppServices.CurrentUserId is not int userId)
+            {
+                return null;
+            }
+
+            try
+            {
+                return await AppServices.Games.CreateGameAsync(userId, Difficulty, DateTime.UtcNow);
+            }
+            catch (Exception ex)
+            {
+                Trace.TraceError(ex.ToString());
+                return null;
+            }
+        }
+
+        private async Task SaveGameAsync(bool playerWon)
+        {
+            if (_gameIdTask is null)
+            {
+                return;
+            }
+
+            try
+            {
+                var gameId = await _gameIdTask;
+                if (gameId is not long id)
+                {
+                    return;
+                }
+
+                await AppServices.Shots.AddShotsBatchAsync(id, _session.ShotHistory.ToList());
+                await AppServices.Games.CompleteGameAsync(
+                    id,
+                    playerWon ? GameRepository.PlayerWonResult : GameRepository.BotWonResult,
+                    _session.PlayerShotCount,
+                    DateTime.UtcNow);
+            }
+            catch (Exception ex)
+            {
+                Trace.TraceError(ex.ToString());
+            }
         }
 
         // ---------- tiện ích ----------
