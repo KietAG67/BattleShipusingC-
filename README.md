@@ -49,7 +49,7 @@ Bot: Easy=random; Medium=Hunt-Target; Hard=constraint/backtracking + probability
 src/  BattleShip.Domain | BattleShip.Application | BattleShip.Infrastructure | BattleShip.Wpf
 tests/BattleShip.Domain.Tests
 database/001_initial.sql
-docs/proposal.md | plan-4-weeks.md | architecture.md
+docs/context-architecture.md | context-core-rules.md | context-task-module.md | database.md
 ```
 
 ## Phân công
@@ -63,12 +63,8 @@ docs/proposal.md | plan-4-weeks.md | architecture.md
 
 Đọc thêm:
 
-- [Proposal](docs/proposal.md)
-- [Kế hoạch 4 tuần](docs/plan-4-weeks.md)
-- [Phân công chi tiết theo thành viên](docs/team-work-plan.md)
-- [Kiến trúc và game scene](docs/architecture.md)
-- [Luật game](docs/game-rules.md)
-- [Hướng dẫn đóng góp](CONTRIBUTING.md)
-- [Coding standards](docs/coding-standards.md)
-- [Quyết định kỹ thuật](docs/decisions.md)
+- [Kiến trúc và luồng màn hình](docs/context-architecture.md)
+- [Luật game, coding standards và quyết định kỹ thuật (ADR)](docs/context-core-rules.md)
+- [Phân công chi tiết theo thành viên](docs/context-task-module.md)
 - [Database](docs/database.md)
+- [Hướng dẫn đóng góp](CONTRIBUTING.md)

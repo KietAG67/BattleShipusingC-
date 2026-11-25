@@ -60,7 +60,7 @@ Khi đổi luật, model dùng chung, interface hoặc schema: cập nhật tài
 ## Quy trình Git
 
 - `main` là bản ổn định. Không commit trực tiếp vào `main`.
-- Nhánh tích hợp của nhóm là `develop` theo `CONTRIBUTING.md`, nhưng remote hiện có nhánh `dev`. Xác nhận với nhóm trước khi tạo PR.
+- Nhánh tích hợp của nhóm là `dev`; mở PR vào `dev`, cuối kỳ merge `dev` vào `main`.
 - Nhánh làm việc: `feature/<ten>`, `fix/<ten>`, `docs/<ten>`.
 - Commit message: `feat:`, `fix:`, `test:`, `docs:`, `refactor:`, `chore:` kèm mô tả ngắn.
 - Mỗi PR cần mô tả, kết quả test và ít nhất một reviewer.
@@ -75,7 +75,7 @@ Khi đổi luật, model dùng chung, interface hoặc schema: cập nhật tài
 
 ## Lưu ý trạng thái hiện tại
 
-- `Infrastructure` mới chỉ có cấu hình, chưa có repository.
-- `GameSession` chưa có timer 30 giây và chưa có logic bot tự xếp tàu.
-- Bot Hard (`ProbabilityBot`) chưa dùng thông tin ô đã trúng và chưa có BFS/backtracking như tài liệu mô tả.
-- WPF mới chỉ có khung lưới; chưa có MVVM và các màn hình.
+- `Infrastructure` mới chỉ có cấu hình, chưa có repository SQL Server.
+- `GameSession` chưa có timer 30 giây; bot tự xếp tàu hiện nằm ở `RandomFleetPlacer` trong WPF.
+- WPF đã có các màn hình MVVM, nhưng đăng nhập dùng `FakeAuthService` và bảng xếp hạng là dữ liệu giả.
+- Bot Easy/Medium/Hard (`RandomBot`, `HuntTargetBot`, `ProbabilityBot`) hoàn thành ở nhánh `feature/domain-and-bots`; kiểm tra xem đã merge vào `dev` chưa trước khi dựa vào chúng.
