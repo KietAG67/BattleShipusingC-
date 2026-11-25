@@ -1,1 +1,7 @@
-namespace BattleShip.Wpf; public partial class App:System.Windows.Application { }
+namespace BattleShip.Wpf
+{
+    
+    public partial class App : System.Windows.Application
+    {
+    }
+}
