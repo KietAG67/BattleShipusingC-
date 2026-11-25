@@ -3,12 +3,12 @@
 ## Branch strategy
 
 - `main`: phiên bản ổn định, dùng cho demo/release.
-- `develop`: nhánh tích hợp của nhóm.
+- `dev`: nhánh tích hợp của nhóm.
 - `feature/<ten-tinh-nang>`: phát triển tính năng.
 - `fix/<ten-loi>`: sửa lỗi.
 - `docs/<ten-tai-lieu>`: cập nhật tài liệu.
 
-Không commit trực tiếp vào `main`. Mỗi thay đổi nên được thực hiện qua Pull Request vào `develop`; trước bản nộp cuối, merge `develop` vào `main`.
+Không commit trực tiếp vào `main`. Mỗi thay đổi nên được thực hiện qua Pull Request vào `dev`; trước bản nộp cuối, merge `dev` vào `main`.
 
 ## Commit message
 
@@ -46,4 +46,4 @@ Một task chỉ hoàn tất khi code build được, test phù hợp chạy th�
 
 ## Nguyên tắc làm việc
 
-Mỗi tính năng phải có owner chính và reviewer. Không sửa trực tiếp file lõi của thành viên khác nếu chưa trao đổi. Khi thay đổi luật, model dùng chung, interface hoặc database, phải cập nhật `docs/decisions.md` và tài liệu liên quan.
+Mỗi tính năng phải có owner chính và reviewer. Không sửa trực tiếp file lõi của thành viên khác nếu chưa trao đổi. Khi thay đổi luật, model dùng chung, interface hoặc database, phải cập nhật `docs/context-core-rules.md` (mục ADR) và tài liệu liên quan.

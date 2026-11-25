@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using System.Windows.Input;
 using System.Windows.Threading;
 using BattleShip.Application;
@@ -16,6 +17,7 @@ namespace BattleShip.Wpf.ViewModels
         private const int TurnSeconds = 30;
         private const int BotThinkMilliseconds = 800;
         private const int EndDelayMilliseconds = 1800;
+        private const string UnexpectedErrorMessage = "Something went wrong. Please try again.";
 
         private readonly NavigationStore _navigationStore;
         private readonly GameSession _session;
@@ -140,12 +142,13 @@ namespace BattleShip.Wpf.ViewModels
             {
                 await FireAsync();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                Trace.TraceError(ex.ToString());
                 _busy = false;
                 if (!_closed)
                 {
-                    BeginPlayerTurn("Something went wrong. Please try again.");
+                    BeginPlayerTurn(UnexpectedErrorMessage);
                 }
             }
         }
@@ -309,9 +312,10 @@ namespace BattleShip.Wpf.ViewModels
                 await Task.CompletedTask;
 #endif
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                StatusMessage = "Something went wrong. Please try again.";
+                Trace.TraceError(ex.ToString());
+                StatusMessage = UnexpectedErrorMessage;
             }
             finally
             {
