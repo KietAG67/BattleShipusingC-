@@ -11,6 +11,9 @@ namespace BattleShip.Wpf.ViewModels
     {
         private sealed record PlacedShip(int FleetIndex, Cell Start, Orientation Orientation);
 
+        private const double ValidPreviewOpacity = 0.75;
+        private const double InvalidPreviewOpacity = 0.45;
+
         private readonly NavigationStore _navigationStore;
         private readonly List<PlacedShip> _placed = new();
         private Board _scratch = new();
@@ -30,8 +33,8 @@ namespace BattleShip.Wpf.ViewModels
             {
                 new ShipCardViewModel("Aircraft Carrier", 0),
                 new ShipCardViewModel("Battleship", 1),
-                new ShipCardViewModel("Cruiser", 2),
-                new ShipCardViewModel("Destroyer", 3),
+                new ShipCardViewModel("Cruiser", 2, 3),
+                new ShipCardViewModel("Destroyer", 4),
             };
 
             SelectCardCommand = new RelayCommand(p => SelectCard(p as ShipCardViewModel));
@@ -275,7 +278,7 @@ namespace BattleShip.Wpf.ViewModels
             var valid = _scratch.CanPlaceShip(length, start, CurrentOrientation);
 
             PlacementBoard.SetPreview(Board.GetCells(length, start, CurrentOrientation), valid);
-            _previewSprite = BoardViewModel.CreateSprite(name, start.Row, start.Column, length, _isVertical, valid ? 0.75 : 0.45);
+            _previewSprite = BoardViewModel.CreateSprite(name, start.Row, start.Column, length, _isVertical, valid ? ValidPreviewOpacity : InvalidPreviewOpacity);
             PlacementBoard.Ships.Add(_previewSprite);
 
             if (!valid)

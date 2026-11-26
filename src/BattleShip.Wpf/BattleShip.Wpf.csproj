@@ -8,12 +8,17 @@
     <UseWPF>true</UseWPF>
     <RootNamespace>BattleShip.Wpf</RootNamespace>
     <AssemblyName>BattleShip.Wpf</AssemblyName>
-    
+    <!--
+      Bật dòng dưới khi Sỹ đã thêm GameSession.TimeoutTurn() (xem docs/wpf-guide-nam.md, mục 9).
+      Khi đó hết 30 giây sẽ thật sự mất lượt và chuyển sang bot.
+    -->
+    <DefineConstants>$(DefineConstants);HAS_TURN_TIMEOUT</DefineConstants>
   </PropertyGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\BattleShip.Domain\BattleShip.Domain.csproj" />
     <ProjectReference Include="..\BattleShip.Application\BattleShip.Application.csproj" />
+    <ProjectReference Include="..\BattleShip.Infrastructure\BattleShip.Infrastructure.csproj" />
   </ItemGroup>
 
   <ItemGroup>

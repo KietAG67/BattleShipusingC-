@@ -19,6 +19,8 @@
             </DataGrid.Columns>
         </DataGrid>
 
+        <TextBlock Grid.Row="1" Text="{Binding StatusMessage}" Foreground="#A6ADC8" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+
         <Button Grid.Row="2" Content="Back to Menu" Command="{Binding BackToMenuCommand}" Height="40" Width="180" Background="#F38BA8" Foreground="#11111B" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,15,0,0"/>
     </Grid>
     </Border>

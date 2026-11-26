@@ -1,6 +1,9 @@
 namespace BattleShip.Wpf.ViewModels
 {
-    /// <summary>Một thẻ trong bảng "Available Ships" của ảnh nền (mỗi thẻ ứng với một tàu trong Fleet.Default).</summary>
+    /// <summary>
+    /// Một thẻ trong bảng "Available Ships" của ảnh nền. Ảnh chỉ có 4 thẻ nhưng hạm đội có 5 tàu
+    /// (Fleet.Default), nên thẻ Cruiser đại diện cho 2 tàu 3 ô (Cruiser + Submarine) và hiện "x2".
+    /// </summary>
     public sealed class ShipCardViewModel : ViewModelBase
     {
         private int _placedCount;
