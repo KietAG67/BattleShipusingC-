@@ -1,5 +1,6 @@
 using System.Windows.Input;
 using BattleShip.Wpf.Commands;
+using BattleShip.Wpf.Helpers;
 using BattleShip.Wpf.Services;
 
 namespace BattleShip.Wpf.ViewModels
@@ -7,17 +8,35 @@ namespace BattleShip.Wpf.ViewModels
     public class LoginViewModel : ViewModelBase
     {
         private readonly NavigationStore _navigationStore;
+        private readonly IPasswordRecoveryService _passwordRecovery = new PendingPasswordRecoveryService();
         private string _username = string.Empty;
         private string _password = string.Empty;
+        private bool _rememberMe;
         private string _message = string.Empty;
         private bool _isError;
 
-        public LoginViewModel(NavigationStore navigationStore)
+        /// <param name="notice">Thông báo hiện sẵn, ví dụ sau khi đăng ký hoặc đổi mật khẩu thành công.</param>
+        public LoginViewModel(NavigationStore navigationStore, string? notice = null)
         {
             _navigationStore = navigationStore;
 
+            var rememberedUsername = RememberedUsernameStore.Load();
+            if (!string.IsNullOrEmpty(rememberedUsername))
+            {
+                _username = rememberedUsername;
+                _rememberMe = true;
+            }
+
             LoginCommand = new RelayCommand(_ => Login());
-            RegisterCommand = new RelayCommand(_ => Register());
+            ToggleRememberCommand = new RelayCommand(_ => RememberMe = !RememberMe);
+            ForgotPasswordCommand = new RelayCommand(_ =>
+                _navigationStore.CurrentViewModel = new ForgotPasswordViewModel(_navigationStore, _passwordRecovery));
+            SignUpCommand = new RelayCommand(_ => _navigationStore.CurrentViewModel = new SignUpViewModel(_navigationStore));
+
+            if (!string.IsNullOrEmpty(notice))
+            {
+                Show(notice, isError: false);
+            }
         }
 
         public string Username
@@ -41,6 +60,13 @@ namespace BattleShip.Wpf.ViewModels
 
         public bool HasPassword => _password.Length > 0;
 
+        /// <summary>Có ghi nhớ tên đăng nhập trên máy này không (không ghi nhớ mật khẩu).</summary>
+        public bool RememberMe
+        {
+            get => _rememberMe;
+            set => SetField(ref _rememberMe, value);
+        }
+
         public string Message
         {
             get => _message;
@@ -55,7 +81,11 @@ namespace BattleShip.Wpf.ViewModels
 
         public ICommand LoginCommand { get; }
 
-        public ICommand RegisterCommand { get; }
+        public ICommand ToggleRememberCommand { get; }
+
+        public ICommand ForgotPasswordCommand { get; }
+
+        public ICommand SignUpCommand { get; }
 
         private void Login()
         {
@@ -66,13 +96,16 @@ namespace BattleShip.Wpf.ViewModels
                 return;
             }
 
-            _navigationStore.CurrentViewModel = new MainMenuViewModel(_navigationStore);
-        }
+            if (RememberMe)
+            {
+                RememberedUsernameStore.Save(Username.Trim());
+            }
+            else
+            {
+                RememberedUsernameStore.Clear();
+            }
 
-        private void Register()
-        {
-            var result = AppServices.Auth.Register(Username, Password);
-            Show(result.Message, isError: !result.Success);
+            _navigationStore.CurrentViewModel = new MainMenuViewModel(_navigationStore);
         }
 
         private void Show(string message, bool isError)
