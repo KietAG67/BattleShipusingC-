@@ -73,8 +73,23 @@
                 <!-- Nút trong suốt đặt đè lên nút đã vẽ trong ảnh -->
                 <Button Style="{StaticResource OverlayButton}" Canvas.Left="385" Canvas.Top="442" Width="423" Height="46"
                         Command="{Binding LoginCommand}"/>
+
+                <!-- Remember me: ô vuông và chữ đã vẽ sẵn trong ảnh. Nút trong suốt đè lên, dấu tích hiện khi được chọn -->
+                <Button Style="{StaticResource OverlayButton}" Canvas.Left="382" Canvas.Top="392" Width="150" Height="26"
+                        Command="{Binding ToggleRememberCommand}"/>
+                <Grid Canvas.Left="384" Canvas.Top="394" Width="22" Height="22" IsHitTestVisible="False"
+                      Visibility="{Binding RememberMe, Converter={StaticResource BoolToVis}}">
+                    <TextBlock Text="✓" FontSize="16" FontWeight="Bold" Foreground="#1F4E8C"
+                               HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                </Grid>
+
+                <!-- Forgot password? -->
+                <Button Style="{StaticResource OverlayButton}" Canvas.Left="676" Canvas.Top="306" Width="138" Height="28"
+                        Command="{Binding ForgotPasswordCommand}"/>
+
+                <!-- Sign up now -->
                 <Button Style="{StaticResource OverlayButton}" Foreground="#1F4E8C" Canvas.Left="636" Canvas.Top="514"
-                        Width="96" Height="24" Command="{Binding RegisterCommand}"/>
+                        Width="96" Height="24" Command="{Binding SignUpCommand}"/>
             </Canvas>
         </Viewbox>
     </Grid>

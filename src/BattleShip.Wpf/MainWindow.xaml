@@ -9,6 +9,15 @@
         <DataTemplate DataType="{x:Type viewmodels:LoginViewModel}">
             <views:LoginView/>
         </DataTemplate>
+        <DataTemplate DataType="{x:Type viewmodels:SignUpViewModel}">
+            <views:SignUpView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewmodels:ForgotPasswordViewModel}">
+            <views:ForgotPasswordView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewmodels:ResetPasswordViewModel}">
+            <views:ResetPasswordView/>
+        </DataTemplate>
         <DataTemplate DataType="{x:Type viewmodels:MainMenuViewModel}">
             <views:MainMenuView/>
         </DataTemplate>
